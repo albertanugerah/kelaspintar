@@ -1,0 +1,77 @@
+CREATE TABLE users (
+    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT ,
+    name VARCHAR(50) NOT NULL ,
+    gender ENUM('M','F') NOT NULL ,
+    status ENUM('active','deleted') NOT NULL ,
+    PRIMARY KEY (`id`)
+);
+
+create table hobbies
+(
+    id    int(11) unsigned auto_increment,
+    name  varchar(15) not null,
+    level tinyint(3)  not null,
+    constraint hobbies_pk
+    primary key (id)
+);
+
+create table map_user_hobby
+(
+    id       int(11) unsigned auto_increment,
+    id_user  int(11) unsigned not null,
+    id_hobby int(11) unsigned not null,
+    status  enum('active','deleted') not null,
+    constraint map_user_hobby_pk
+        primary key (id),
+    constraint map_user_hobby_hobbies_fk
+        foreign key (id_hobby) references hobbies (id)
+            on update cascade on delete cascade,
+    constraint map_user_hobby_users_fk
+        foreign key (id_user) references users (id)
+            on update cascade on delete cascade
+);
+
+create index hobbies_name_index
+    on hobbies (name);
+
+insert into users values
+                      (1,'Fasch','F','active'),
+                      (2,'Garmuth','F','M'),
+                      (3,'Golaith','M','active'),
+                      (4,'Luna','F','active'),
+                      (5,'Zeus','M','active'),
+                      (6,'Aphrodite','F','active'),
+                      (7,'Ares','M','active'),
+                      (8,'lina','F','active'),
+                      (9,'Lanaya','F','active'),
+                      (10,'Hades','M','active');
+
+INSERT INTO hobbies values
+                        (1,'Running',8),
+                        (2,'Skipping',5),
+                        (3,'Push Up', 10);
+
+INSERT INTO  map_user_hobby  values
+                                 (1,1,1,'active'),
+                                 (2,3,1,'active'),
+                                 (3,8,3,'deleted'),
+                                 (4,2,2,'active'),
+                                 (5,4,1,'deleted'),
+                                 (6,6,2,'active'),
+                                 (7,5,3,'active'),
+                                 (8,8,1,'active'),
+                                 (9,7,2,'active'),
+                                 (10,4,2,'active'),
+                                 (11,9,3,'deleted'),
+                                 (12,10,2,'deleted'),
+                                 (13,3,2,'active'),
+                                 (14,2,3,'active'),
+                                 (15,10,2,'active');
+
+
+select users.gender,count(users.gender) total
+from users
+join map_user_hobby map on users.id = map.id_user
+join hobbies h on h.id = map.id_hobby
+where h.name = 'skipping'
+group by users.gender;
