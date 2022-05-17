@@ -17,7 +17,7 @@ function cacah(int $input): void
     echo implode(",",$isi);
       echo "\n";
 }
-cacah($input);
+//cacah($input);
 
 
 /**
@@ -48,7 +48,7 @@ function searchAnimal(string $string):void
     }
    echo implode(' - ',$hasil) .PHP_EOL;
 }
-searchAnimal($string);
+//searchAnimal($string);
 
 
 function checkPassword($password): void
@@ -90,7 +90,33 @@ function checkPassword($password): void
    }
 
 }
-checkPassword('aL8e@##!');
+//checkPassword('aL8e@##!');
+$input = [8,6,7,12];
 
+function sorting(array $arr):array {
+    $size = count($arr)-1;
+    for ($i=0; $i<$size; $i++) {
+        for ($j=0; $j<$size-$i; $j++) {
+            $k = $j+1;
+            if ($arr[$k] < $arr[$j]) {
+                [$arr[$j], $arr[$k]] = array($arr[$k], $arr[$j]);
+            }
+        }
+    }
+    return $arr;
+}
+function nilaiTerkecil(array $array):void
+{
+    $value = sorting($array);
+
+    $first = current($value);
+    $last = end($value);
+    $items = range($first,$last);
+
+    echo current(array_diff($items,$value));
+
+}
+
+nilaiTerkecil($input);
 
 
