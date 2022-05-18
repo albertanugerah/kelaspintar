@@ -17,6 +17,6 @@
       - ![screenshoot hasil](https://github.com/albertanugerah/kelaspintar/blob/master/img/jawaban4.jpg?raw=true)
     - [Jawaban No 5](https://paiza.io/projects/FJgdtW3tDSvo1s3ji41HaQ)
         - Screenshot hasil Jawaban Soal No. 5
-        - ![screenshoot hasil](https://github.com/albertanugerah/kelaspintar/blob/master/img/jawaban 5.jpg?raw=true)
+        - ![screenshoot hasil](https://github.com/albertanugerah/kelaspintar/blob/master/img/jawaban%205.jpg?raw=true)
 - Untuk merubah nilai input, ada di variable **$input** yang ada didalam source code
 - Klik **Run**
